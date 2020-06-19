@@ -1,0 +1,15 @@
+version: "2"
+services:
+  mumaxview-service:
+    image: mumax-view
+    container_name: mumax-view
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_mumaxview 
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    ports:
+      - 5670:80
+    restart: unless-stopped

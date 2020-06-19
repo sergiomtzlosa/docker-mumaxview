@@ -1,0 +1,40 @@
+FROM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get upgrade -y
+
+RUN apt-get install -y git make cmake build-essential libglu1-mesa-dev freeglut3-dev mesa-common-dev \
+	 libpng-dev zlib1g-dev libglfw3 libglfw3-dev libglm-dev libgles2-mesa-dev wget apache2 python3 python3-dev unzip
+
+WORKDIR /
+
+RUN git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && \
+	./emsdk install latest && ./emsdk activate latest && /bin/bash -c "source ./emsdk_env.sh"
+
+RUN cd / && cp -r /usr/include/libpng16 /emsdk/upstream/emscripten/system/include/libpng
+
+RUN cd / && wget https://github.com/g-truc/glm/archive/stable.zip && \
+	 unzip stable.zip && cp -r glm-stable/glm /emsdk/upstream/emscripten/system/include/glm
+
+RUN cd / && git clone https://github.com/JeroenMulkers/mumax-view.git
+
+RUN export NODE_VERSION=$(ls /emsdk/node)
+
+ENV PATH=$PATH:/emsdk:/emsdk/upstream/emscripten:/emsdk/node/${NODE_VERSION}/bin
+
+ENV EMSDK=/emsdk
+ENV EM_CONFIG=/emsdk/.emscripten
+ENV EM_CACHE=/emsdk/upstream/emscripten/cache
+ENV EMSDK_NODE=/emsdk/node/${NODE_VERSION}/bin/node
+
+RUN cd / && cd /mumax-view && mkdir -p build/web && \
+        cd build/web && emcmake cmake ../.. && emmake make && \
+	mkdir -p /var/www/html/mumax-view && cp -r * /var/www/html/mumax-view && chown -R www-data:www-data /var/www/html/mumax-view
+
+# Optional, not necessary, we do not have graphical interface, but it compiles
+#RUN cd / && cd /mumax-view && mkdir -p build/desktop && \
+#	cd build/desktop && cmake ../.. && make
+
+EXPOSE 80
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
