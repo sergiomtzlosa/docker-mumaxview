@@ -28,7 +28,7 @@ $ git clone git@github.com:sergiomtzlosa/docker-mumaxview.git
 ```
 2.- Build the image
 ```
-$ docker compuse up -d
+$ docker-compose up -d
 ```
 Open your browser pointing the following URL: **http://YOUR_IP:5670/mumav-view/**
 
