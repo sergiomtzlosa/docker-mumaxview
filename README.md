@@ -15,7 +15,7 @@ Then run the image:
 ```
 $ docker run -d -p 5670:80 sergiomtzlosa/mumax-view 
 ```
-Open your browser pointing the following URL: **http://YOUR_IP:5670/mumav-view/**
+Open your browser pointing the following URL: **http://YOUR_IP:5670/mumax-view/**
 
 Then you will see the mumax-view example, you can upload your OVF files to visualize them.
 
