@@ -1,5 +1,5 @@
 # MUMAX-VIEW IN DOCKER
-----------------------
+
 Mumax-view is an application developed by [Jeroen Mulkers](https://github.com/JeroenMulkers/mumax-view), this amazing piece of software visualizes the OVF files created from Mumax3 onto a web page or a desktop application.
 
 This docker image uses the web interface provided by mumax-view to show the OVF file, as the docker image does not have GUI.
