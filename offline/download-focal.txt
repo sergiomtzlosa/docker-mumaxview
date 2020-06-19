@@ -1,0 +1,7 @@
+1.- Download base system with debootstrap
+
+$ sudo debootstrap focal focal http://us.archive.ubuntu.com/ubuntu 
+
+2.- Package the folder
+
+$ sudo tar -f rootfs-focal.tar.xz -C focal -c .   

@@ -16,14 +16,6 @@ WORKDIR /
 RUN git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && \
 	./emsdk install latest && ./emsdk activate latest && /bin/bash -c "source ./emsdk_env.sh"
 
-COPY libpng.zip /
-RUN cd / && unzip libpng.zip && cp -r /usr/include/libpng16 /emsdk/upstream/emscripten/system/include/libpng
-
-COPY stable.zip /
-RUN cd / && unzip stable.zip && cp -r glm-stable/glm /emsdk/upstream/emscripten/system/include/glm
-
-RUN cd / && git clone https://github.com/JeroenMulkers/mumax-view.git
-
 RUN export NODE_VERSION=$(ls /emsdk/node)
 
 ENV PATH=$PATH:/emsdk:/emsdk/upstream/emscripten:/emsdk/node/${NODE_VERSION}/bin
@@ -32,6 +24,14 @@ ENV EMSDK=/emsdk
 ENV EM_CONFIG=/emsdk/.emscripten
 ENV EM_CACHE=/emsdk/upstream/emscripten/cache
 ENV EMSDK_NODE=/emsdk/node/${NODE_VERSION}/bin/node
+
+COPY libpng.zip /
+RUN cd / && unzip libpng.zip && cp -r /usr/include/libpng16 /emsdk/upstream/emscripten/system/include/libpng
+
+COPY stable.zip /
+RUN cd / && unzip stable.zip && cp -r glm-stable/glm /emsdk/upstream/emscripten/system/include/glm
+
+RUN cd / && git clone https://github.com/JeroenMulkers/mumax-view.git
 
 RUN cd / && cd /mumax-view && mkdir -p build/web && \
         cd build/web && emcmake cmake ../.. && emmake make && \
