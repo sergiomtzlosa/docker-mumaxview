@@ -32,7 +32,7 @@ $ git clone git@github.com:sergiomtzlosa/docker-mumaxview.git
 ```
 $ docker-compose up -d
 ```
-Open your browser pointing the following URL: **http://YOUR_IP:5670/mumav-view/**
+Open your browser pointing the following URL: **http://YOUR_IP:5670/mumax-view/**
 
 ## Dockerhub link
 
