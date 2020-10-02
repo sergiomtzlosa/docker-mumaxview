@@ -30,7 +30,7 @@ RUN cd / && git clone https://github.com/JeroenMulkers/mumax-view.git
 
 RUN cd / && cd /mumax-view && mkdir -p build/web && \
         cd build/web && emcmake cmake ../.. && emmake make && \
-	mkdir -p /var/www/html/mumax-view && cp -r * /var/www/html/mumax-view && chown -R www-data:www-data /var/www/html/mumax-view
+	mkdir -p /var/www/html && cp -r * /var/www/html && chown -R www-data:www-data /var/www/html/*
 
 # Optional, not necessary, we do not have graphical interface, but it compiles
 #RUN cd / && cd /mumax-view && mkdir -p build/desktop && \

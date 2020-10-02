@@ -17,7 +17,7 @@ Then run the image:
 ```
 $ docker run -d -p 5670:80 sergiomtzlosa/mumax-view 
 ```
-Open your browser pointing the following URL: **http://YOUR_IP:5670/mumax-view/**
+Open your browser pointing the following URL: **http://YOUR_IP:5670/**
 
 Then you will see the mumax-view example, you can upload your OVF files to visualize them.
 
@@ -32,7 +32,7 @@ $ git clone git@github.com:sergiomtzlosa/docker-mumaxview.git
 ```
 $ docker-compose up -d
 ```
-Open your browser pointing the following URL: **http://YOUR_IP:5670/mumax-view/**
+Open your browser pointing the following URL: **http://YOUR_IP:5670/**
 
 ## Dockerhub link
 
