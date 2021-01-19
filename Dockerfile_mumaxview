@@ -23,10 +23,10 @@ ENV EMSDK_NODE=/emsdk/node/${NODE_VERSION}/bin/node
 
 RUN cd / && cp -r /usr/include/libpng16 /emsdk/upstream/emscripten/system/include/libpng
 
-RUN cd / && wget https://github.com/g-truc/glm/archive/stable.zip && \
-	 unzip stable.zip && cp -r glm-stable/glm /emsdk/upstream/emscripten/system/include/glm
+#RUN cd / && wget https://github.com/g-truc/glm/archive/stable.zip && \
+#	 unzip stable.zip && cp -r glm-stable/glm /emsdk/upstream/emscripten/system/include/glm
 
-RUN cd / && git clone https://github.com/JeroenMulkers/mumax-view.git
+RUN cd / && git clone --recursive https://github.com/JeroenMulkers/mumax-view.git
 
 RUN cd / && cd /mumax-view && mkdir -p build/web && \
         cd build/web && emcmake cmake ../.. && emmake make && \
